@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La Verve — Consultoria de Legado & Refinamento</title>
+<meta name="description" content="La Verve é uma consultoria de legado, etiqueta e refinamento para indivíduos e famílias que constroem uma presença duradoura." />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde:  #006039;
+    --vinho:  #722F37;
+    --creme:  #F5F0E8;
+    --ouro:   #C9A96E;
+    --off-wh: #faf8f4;
+    --dark:   #1a1610;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--off-wh);
+    color: var(--dark);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: rgba(250,248,244,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(26,22,16,0.07);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.6rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--dark);
+    text-decoration: none;
+    opacity: 0.45;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  /* ESQUERDA — manifesto sobre fundo off-white */
+  .hero-left {
+    background: var(--off-wh);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 6rem 4.5rem 6rem 6rem;
+    position: relative;
+    border-right: 1px solid rgba(26,22,16,0.07);
+  }
+  /* linha verde muito sutil à esquerda */
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    top: 15%; bottom: 15%;
+    left: 0;
+    width: 2px;
+    background: var(--verde);
+    opacity: 0.35;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--vinho);
+    opacity: 0.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 5vw, 5.4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--dark);
+  }
+  .hero-display em {
+    font-style: italic;
+    color: var(--vinho);
+  }
+
+  .hero-divider {
+    width: 28px; height: 1px;
+    background: var(--dark);
+    opacity: 0.12;
+    margin: 2.6rem 0;
+  }
+
+  .hero-sub {
+    font-size: 0.82rem;
+    line-height: 2.1;
+    color: rgba(26,22,16,0.45);
+    max-width: 360px;
+  }
+
+  .hero-cta {
+    margin-top: 3rem;
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(26,22,16,0.18);
+    color: rgba(26,22,16,0.55);
+    font-size: 0.63rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+    align-self: flex-start;
+  }
+  .hero-cta:hover { border-color: var(--verde); color: var(--verde); }
+
+  /* DIREITA — definição da palavra sobre creme */
+  .hero-right {
+    background: var(--creme);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 6rem 5rem;
+  }
+
+  .word-fr {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5.5rem, 10vw, 9.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 1.2s 0.3s forwards;
+  }
+  .word-meta {
+    display: flex; gap: 1.4rem; align-items: baseline;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+  .word-class {
+    font-size: 0.58rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(26,22,16,0.35);
+  }
+  .word-phonetic {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgba(26,22,16,0.28);
+  }
+  .word-def-line {
+    width: 24px; height: 1px;
+    background: var(--vinho);
+    margin: 2rem 0;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+  .word-def {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--dark);
+    max-width: 340px;
+    opacity: 0;
+    animation: fadeUp 1s 1s forwards;
+  }
+  .word-def strong { color: var(--vinho); font-weight: 500; }
+  .word-origin {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    color: rgba(26,22,16,0.3);
+    margin-top: 1.8rem;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MANIFESTO ── */
+  .manifesto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 60vh;
+    background: var(--off-wh);
+  }
+  .manifesto-text {
+    padding: 7rem 5rem 7rem 6rem;
+    border-right: 1px solid rgba(26,22,16,0.07);
+  }
+  .section-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--verde);
+    opacity: 0.7;
+    margin-bottom: 1.6rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.25;
+    color: var(--dark);
+    margin-bottom: 2rem;
+  }
+  .section-title em { font-style: italic; color: var(--vinho); }
+  .section-body {
+    font-size: 0.85rem;
+    line-height: 2.1;
+    color: rgba(26,22,16,0.5);
+    max-width: 420px;
+  }
+  .manifesto-quote {
+    background: var(--creme);
+    padding: 7rem 5rem;
+    display: flex; flex-direction: column;
+    justify-content: center;
+  }
+  .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: rgba(26,22,16,0.12);
+    line-height: 0.8;
+    margin-bottom: 2rem;
+  }
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1.7;
+    margin-bottom: 2.2rem;
+    opacity: 0.75;
+  }
+  .quote-attr {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--verde);
+    opacity: 0.6;
+  }
+
+  /* ── SERVIÇOS ── */
+  .services {
+    background: var(--vinho);
+    padding: 7rem 6rem;
+  }
+  .services-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+    padding-bottom: 2rem;
+  }
+  .services-header .section-title { color: var(--off-wh); margin: 0; opacity: 1; }
+  .services-header .section-title em { color: var(--ouro); opacity: 1; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(245,240,232,0.08);
+  }
+  .service-card {
+    background: rgba(90,25,32,0.6);
+    padding: 3rem 2.5rem;
+    border: 1px solid rgba(245,240,232,0.08);
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card:hover { background: rgba(0,80,45,0.28); border-color: rgba(245,240,232,0.18); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--ouro);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+    display: block;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: rgba(245,240,232,0.85);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .service-desc {
+    font-size: 0.78rem;
+    line-height: 1.95;
+    color: rgba(245,240,232,0.48);
+  }
+  .service-line {
+    width: 20px; height: 1px;
+    background: var(--ouro);
+    opacity: 0.5;
+    margin-bottom: 1.8rem;
+  }
+
+  /* ── MÉTODO ── */
+  .method {
+    background: var(--creme);
+    padding: 7rem 6rem;
+  }
+  .method-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .method-steps { display: flex; flex-direction: column; }
+  .method-step {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(26,22,16,0.09);
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 1.4rem;
+    align-items: start;
+  }
+  .method-step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    opacity: 0.18;
+    line-height: 1;
+    padding-top: 0.15rem;
+  }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    opacity: 0.85;
+  }
+  .step-desc {
+    font-size: 0.8rem;
+    color: rgba(26,22,16,0.42);
+    line-height: 2;
+  }
+
+  /* ── CONTATO ── */
+  .contact {
+    background: var(--off-wh);
+    padding: 8rem 6rem;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    border-top: 1px solid rgba(26,22,16,0.07);
+  }
+  .contact .section-eyebrow { color: var(--verde); }
+  .contact .section-title { color: var(--dark); margin-bottom: 1.5rem; }
+  .contact .section-title em { color: var(--vinho); }
+  .contact-body {
+    font-size: 0.85rem;
+    line-height: 2.1;
+    color: rgba(26,22,16,0.45);
+    max-width: 440px;
+    margin-bottom: 3rem;
+  }
+  .contact-cta {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 1px solid rgba(26,22,16,0.2);
+    color: rgba(26,22,16,0.6);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .contact-cta:hover { border-color: var(--verde); color: var(--verde); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--vinho);
+    padding: 2.2rem 6rem;
+    display: flex;
+    align-items: center; justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: rgba(245,240,232,0.7);
+  }
+  .footer-copy {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    color: rgba(245,240,232,0.35);
+    text-transform: uppercase;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.9s, transform 0.9s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { gap: 1.4rem; }
+    .hero, .manifesto { grid-template-columns: 1fr; }
+    .hero-left { padding: 5rem 2.5rem; border-right: none; border-bottom: 1px solid rgba(26,22,16,0.07); }
+    .hero-right { padding: 5rem 2.5rem; }
+    .manifesto-text { padding: 5rem 2.5rem; border-right: none; border-bottom: 1px solid rgba(26,22,16,0.07); }
+    .manifesto-quote { padding: 5rem 2.5rem; }
+    .services { padding: 5rem 2.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .method { padding: 5rem 2.5rem; }
+    .method-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .contact { padding: 6rem 2.5rem; }
+    footer { padding: 2rem 2.5rem; flex-direction: column; gap: 0.8rem; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">La Verve</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Manifesto</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#metodo">Método</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- esquerda: headline -->
+  <div class="hero-left">
+    <p class="hero-eyebrow">Consultoria de Legado & Refinamento</p>
+    <h1 class="hero-display">
+      O que você<br>
+      deixa para<br>
+      <em>o mundo</em><br>
+      importa.
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">
+      Construímos presença, conduta e legado para indivíduos e famílias que entendem que refinamento não é superfície — é caráter.
+    </p>
+    <a class="hero-cta" href="#contato">Iniciar conversa</a>
+  </div>
+
+  <!-- direita: definição da palavra -->
+  <div class="hero-right">
+    <p class="word-fr">verve</p>
+    <div class="word-meta">
+      <span class="word-class">substantivo · fr.</span>
+      <span class="word-phonetic">/vɛʁv/</span>
+    </div>
+    <div class="word-def-line"></div>
+    <p class="word-def">
+      Ardor criativo que anima a fala, o gesto e a presença.<br>O brilho singular que torna uma pessoa <strong>inesquecível</strong>.
+    </p>
+    <p class="word-origin">Do latim verba — palavras com força</p>
+  </div>
+
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="sobre">
+  <div class="manifesto-text">
+    <p class="section-eyebrow reveal">Nossa Convicção</p>
+    <h2 class="section-title reveal">Legado não se<br>herda. <em>Constrói-se.</em></h2>
+    <p class="section-body reveal">
+      Em um mundo onde tudo é imediato, a La Verve acredita no valor do que é duradouro. Trabalhamos com pessoas e famílias que desejam cultivar uma presença que transcende — na mesa de negociações, nos eventos sociais, nas heranças que deixam para as próximas gerações.
+      <br><br>
+      Etiqueta não é rigidez. É a arte de fazer os outros se sentirem à vontade em sua presença. Refinamento não é ostentação. É a disciplina silenciosa de quem sabe quem é.
+    </p>
+  </div>
+  <div class="manifesto-quote">
+    <div class="quote-mark reveal">"</div>
+    <p class="quote-text reveal">
+      O verdadeiro refinamento consiste em não revelar suas origens, mas sim em escolher conscientemente quem você quer ser.
+    </p>
+    <p class="quote-attr reveal">La Verve — Princípio Fundador</p>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="services" id="servicos">
+  <div class="services-header">
+    <h2 class="section-title reveal">Nossas <em>especialidades</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">i</span>
+      <div class="service-line"></div>
+      <h3 class="service-name">Protocolo & Etiqueta</h3>
+      <p class="service-desc">Conduta à mesa, recepção de convidados, vestuário para cada ocasião e os códigos não escritos dos ambientes de alto nível social e corporativo.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">ii</span>
+      <div class="service-line"></div>
+      <h3 class="service-name">Presença & Comunicação</h3>
+      <p class="service-desc">Dicção, linguagem corporal, gestão da imagem pública e o domínio da sala — como ser lembrado pelas razões certas em qualquer ambiente.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">iii</span>
+      <div class="service-line"></div>
+      <h3 class="service-name">Legado Familiar</h3>
+      <p class="service-desc">Valores, rituais e histórias que definem uma família ao longo das gerações. Construímos a narrativa que será contada pelos seus descendentes.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">iv</span>
+      <div class="service-line"></div>
+      <h3 class="service-name">Curadoria Cultural</h3>
+      <p class="service-desc">Arte, gastronomia, viagem e entretenimento com propósito. Experiências que enriquecem o repertório de quem já tem muito.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">v</span>
+      <div class="service-line"></div>
+      <h3 class="service-name">Formação de Herdeiros</h3>
+      <p class="service-desc">Programas para adolescentes e jovens adultos que herdarão responsabilidades. Preparação para liderar com elegância e substância.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">vi</span>
+      <div class="service-line"></div>
+      <h3 class="service-name">Branding Pessoal</h3>
+      <p class="service-desc">Para executivos e empreendedores que entendem que sua presença é sua marca mais valiosa. Alinhamento entre quem você é e como o mundo o percebe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section class="method" id="metodo">
+  <div class="method-inner">
+    <div>
+      <p class="section-eyebrow reveal">Nossa Abordagem</p>
+      <h2 class="section-title reveal">Um processo<br><em>discreto</em><br>e profundo.</h2>
+      <p class="section-body reveal" style="margin-top:1.5rem; color:rgba(26,22,16,0.45);">
+        Cada cliente é único. Não existem fórmulas — existem conversas honestas, diagnósticos apurados e um plano feito sob medida.
+      </p>
+    </div>
+    <div class="method-steps">
+      <div class="method-step reveal">
+        <span class="step-num">01</span>
+        <div>
+          <p class="step-title">Conversa Inicial Confidencial</p>
+          <p class="step-desc">Um encontro reservado para compreender sua história, seus objetivos e os ambientes nos quais você deseja se mover com maior segurança e autoridade.</p>
+        </div>
+      </div>
+      <div class="method-step reveal">
+        <span class="step-num">02</span>
+        <div>
+          <p class="step-title">Diagnóstico de Presença</p>
+          <p class="step-desc">Avaliação apurada de conduta, comunicação, repertório cultural e gaps entre a imagem percebida e a identidade desejada.</p>
+        </div>
+      </div>
+      <div class="method-step reveal">
+        <span class="step-num">03</span>
+        <div>
+          <p class="step-title">Plano Personalizado</p>
+          <p class="step-desc">Programa estruturado com sessões, leituras, experiências e práticas calibradas para o seu ritmo e contexto de vida.</p>
+        </div>
+      </div>
+      <div class="method-step reveal">
+        <span class="step-num">04</span>
+        <div>
+          <p class="step-title">Acompanhamento Contínuo</p>
+          <p class="step-desc">Refinamento não é um evento — é uma prática. Permanecemos como parceiros discretos ao longo da jornada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contact" id="contato">
+  <p class="section-eyebrow reveal">Comece Agora</p>
+  <h2 class="section-title reveal" style="margin-bottom:1.5rem;">O primeiro passo é<br><em>uma conversa.</em></h2>
+  <p class="contact-body reveal">
+    Atendemos por indicação e com absoluta discrição. Se você chegou até aqui, provavelmente já sabe que este é o momento certo.
+  </p>
+  <a class="contact-cta reveal" href="mailto:contato@laverve.com.br">Entrar em contato</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">La Verve</div>
+  <p class="footer-copy">© 2026 La Verve · São Paulo</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
